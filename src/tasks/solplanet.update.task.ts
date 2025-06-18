@@ -38,6 +38,14 @@ export class SolplanetUpdateTask extends Runnable {
                     },
                     data.ac[i].current
                 );
+
+                Prometheus.power.set(
+                    {
+                        device_sn: `${this.sn}_AC`,
+                        phase: `L${i + 1}`,
+                    },
+                    data.ac[i].power
+                );
             }
 
             for (let i = 0; i < data.pv.length; i++) {
@@ -55,6 +63,14 @@ export class SolplanetUpdateTask extends Runnable {
                         phase: `S${i + 1}`,
                     },
                     data.pv[i].current
+                );
+
+                Prometheus.power.set(
+                    {
+                        device_sn: `${this.sn}_DC`,
+                        phase: `S${i + 1}`,
+                    },
+                    data.pv[i].power
                 );
             }
 

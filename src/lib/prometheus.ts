@@ -58,6 +58,7 @@ export class Prometheus {
     public static init() {
         this.registry.registerMetric(this.voltage);
         this.registry.registerMetric(this.current);
+        this.registry.registerMetric(this.power);
         this.registry.registerMetric(this.power_factor);
         this.registry.registerMetric(this.frequency);
     }
@@ -65,6 +66,7 @@ export class Prometheus {
     public static clear() {
         this.voltage.reset();
         this.current.reset();
+        this.power.reset();
         this.power_factor.reset();
         this.frequency.reset();
         this.temperature.reset();
