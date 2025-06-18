@@ -22,7 +22,8 @@ export class SolplanetInverter {
 
             ac[i] = {
                 voltage,
-                current
+                current,
+                power: +((voltage * current).toFixed(4))
             }
         }
 
@@ -33,6 +34,7 @@ export class SolplanetInverter {
             pv[i] = {
                 voltage,
                 current,
+                power: +((voltage * current).toFixed(4))
             }
         }
 

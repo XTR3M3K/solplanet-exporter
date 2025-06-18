@@ -10,6 +10,7 @@ export interface SolplanetInverterData {
 export interface PhaseData {
     voltage: number;
     current: number;
+    power?: number;
 }
 
 export interface SolplanetGridData {
