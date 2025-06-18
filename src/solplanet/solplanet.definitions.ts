@@ -1,7 +1,9 @@
 export interface SolplanetInverterData {
     grid: SolplanetGridData;
 
-    temperature?: number;
+    temperature: number;
+
+    totalEnergyProduced: number;
 
     ac: PhaseData[];
     pv: PhaseData[];

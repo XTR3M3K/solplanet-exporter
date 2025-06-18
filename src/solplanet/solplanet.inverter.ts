@@ -44,6 +44,8 @@ export class SolplanetInverter {
                 power_factor: r.data.pf / 100
             },
 
+            totalEnergyProduced: r.data.eto / 10,
+
             temperature: r.data.tmp / 10,
 
             ac,

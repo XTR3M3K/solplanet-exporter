@@ -54,6 +54,14 @@ export class Prometheus {
         ]
     });
 
+    public static energy_produced = new Gauge({
+        name: 'energy_produced',
+        help: 'Energy produced',
+        labelNames: [
+            'device_sn'
+        ]
+    });
+
     public static init() {
         this.registry.registerMetric(this.voltage);
         this.registry.registerMetric(this.current);
@@ -61,6 +69,7 @@ export class Prometheus {
         this.registry.registerMetric(this.power_factor);
         this.registry.registerMetric(this.frequency);
         this.registry.registerMetric(this.temperature);
+        this.registry.registerMetric(this.energy_produced);
     }
 
     public static clear() {
@@ -70,5 +79,6 @@ export class Prometheus {
         this.power_factor.reset();
         this.frequency.reset();
         this.temperature.reset();
+        this.energy_produced.reset();
     }
 }
