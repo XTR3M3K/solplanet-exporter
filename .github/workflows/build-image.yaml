@@ -24,16 +24,18 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Extract tag name
-        id: tag
-        run: echo "TAG=${GITHUB_REF#refs/tags/}" >> $GITHUB_ENV
+      - name: Set lowercase repository name and extract tag
+        id: vars
+        run: |
+          echo "REPO_LOWER=$(echo '${{ github.repository }}' | tr '[:upper:]' '[:lower:]')" >> $GITHUB_ENV
+          echo "TAG=${GITHUB_REF#refs/tags/}" >> $GITHUB_ENV
 
       - name: Build Docker image
         run: |
-          docker build -t ghcr.io/${{ github.repository }}:${{ env.TAG }} \
-                       -t ghcr.io/${{ github.repository }}:latest .
+          docker build -t ghcr.io/${{ env.REPO_LOWER }}:${{ env.TAG }} \
+                       -t ghcr.io/${{ env.REPO_LOWER }}:latest .
 
       - name: Push Docker image
         run: |
-          docker push ghcr.io/${{ github.repository }}:${{ env.TAG }}
-          docker push ghcr.io/${{ github.repository }}:latest
+          docker push ghcr.io/${{ env.REPO_LOWER }}:${{ env.TAG }}
+          docker push ghcr.io/${{ env.REPO_LOWER }}:latest
