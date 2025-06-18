@@ -50,8 +50,7 @@ export class Prometheus {
         name: 'temperature',
         help: 'Temperature measurement',
         labelNames: [
-            'device_sn',
-            'phase'
+            'device_sn'
         ]
     });
 
@@ -61,6 +60,7 @@ export class Prometheus {
         this.registry.registerMetric(this.power);
         this.registry.registerMetric(this.power_factor);
         this.registry.registerMetric(this.frequency);
+        this.registry.registerMetric(this.temperature);
     }
 
     public static clear() {
