@@ -94,6 +94,13 @@ export class SolplanetUpdateTask extends Runnable {
                 },
                 data.temperature
             );
+
+            Prometheus.energy_produced.set(
+                {
+                    device_sn: `${this.sn}`,
+                },
+                data.totalEnergyProduced
+            );
         } catch(e) {
             console.error(e);
             Prometheus.clear();
